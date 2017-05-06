@@ -2,6 +2,12 @@
 
 <?php include('db.php');
 
+
+$page = (isset($_GET['page']) ? $_GET['page'] : 1);
+$perPage = (isset($_GET['per-page']) && ($_GET['per-page']) <= 50 ? $_GET['per-page'] : 5);
+$start = ($page > 1) ? ($page * $perPage) - $perPage : 0;
+
+
 $sql="SELECT * FROM tasks ";
 
 $rows=$db->query($sql);
@@ -25,7 +31,7 @@ $rows=$db->query($sql);
     <div class="col-md-10 col-md-offset">
               <table class="table">
                 <button class="btn btn-success" data-target="#myModal"  data-toggle="modal">Add Task</button>
-                <button class="btn btn-default pull-right" >Print</button>
+                <button class="btn btn-default pull-right " onclick="print()" >Print</button>
                 <hr><br>
                 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -54,7 +60,7 @@ $rows=$db->query($sql);
 </div>
 <thead>
   <tr>
-    <th>N0</th>
+    <th>No</th>
     <th>Task</th>
   </tr>
 </thead>
@@ -65,10 +71,10 @@ $rows=$db->query($sql);
     <th scope="row"><?php echo $row['id']?></th>
     <td class="col-md-10"><?php echo $row['name']?></td>
     <td>
-        <a href="#" class="btn btn-success">Edit</a>
+        <a href="update.php?id=<?php echo $row['id'];?>" class="btn btn-success">Edit</a>
     </td>
     <td>
-        <a href="#" class="btn btn-danger">Delete</a>
+        <a href="delete.php?id=<?php echo $row['id'];?>" class="btn btn-danger">Delete</a>
     </td>
   </tr>
 <?php endwhile;?>
@@ -79,6 +85,11 @@ $rows=$db->query($sql);
 
           </div>
 
+
+
       </div>
+
+
+
 </body>
 </html>

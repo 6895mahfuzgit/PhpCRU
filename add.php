@@ -13,7 +13,7 @@ if(isset($_POST)){
   $val=$db->query($sql);
 
   if($val){
-    echo "<h1>Success</h1>";
+    header('location:index.php');
   }
   else {
     echo "<h1>Con't Save.An Error Occure</h1>";
