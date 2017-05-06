@@ -1,12 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<title</title>
-</head>
-<body>
+<?php
 
-</body>
-</html>
+include('db.php');
+
+if(isset($_POST)){
+
+  $nameog =htmlspecialchars($_POST['task']);
+
+
+  echo $nameog;
+  $sql="INSERT INTO tasks(name) values('$nameog')";
+
+  $val=$db->query($sql);
+
+  if($val){
+    echo "<h1>Success</h1>";
+  }
+  else {
+    echo "<h1>Con't Save.An Error Occure</h1>";
+  }
+
+}
+
+ ?>
